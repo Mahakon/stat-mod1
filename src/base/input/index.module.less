@@ -1,0 +1,41 @@
+@import "../../styles/config/globals";
+
+.container {
+  background: #EEF1F6;
+  width: 50%;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  .title {
+    width: 100%;
+    color: @font-light-gray-color;
+    font-size: @small-text-size;
+    padding: 2px;
+  }
+
+  .input-view {
+    padding: 2px;
+    width: 100%;
+
+    .input {
+      width: 100%;
+      color: @font-gray-color;
+      font-size: @medium-text-size;
+    }
+
+  }
+}
+
+.__left {
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+  margin-right: 2px;
+}
+
+.__right {
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+  margin-left: 2px;
+}
