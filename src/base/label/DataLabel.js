@@ -1,8 +1,9 @@
 import React from 'react';
 import CSSModules from 'react-css-modules';
-import styles from './index.module.less';
 import PropTypes from 'prop-types';
 import cx from 'classnames'
+
+import styles from './label.less';
 
 @CSSModules(styles, {allowMultiple: true})
 export default class DataLabel extends React.Component {
@@ -13,10 +14,6 @@ export default class DataLabel extends React.Component {
       units: PropTypes.string.required
     },
     numOrder: PropTypes.number
-  };
-
-  static defaultProps = {
-    numOrder: 0
   };
 
   render () {

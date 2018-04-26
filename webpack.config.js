@@ -16,14 +16,17 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         exclude: /(node_modules|bower_components)/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            babelrc: false,
-            presets: ['env', 'es2017', 'stage-0'],
-            plugins: ['transform-react-jsx', 'transform-decorators-legacy']
+        use:[
+          {loader: 'cache-loader'},
+          {
+            loader: 'babel-loader',
+            options: {
+              babelrc: false,
+              presets: ['env', 'es2017', 'stage-0'],
+              plugins: ['transform-react-jsx', 'transform-decorators-legacy']
+            }
           }
-        }
+        ]
       },
       {
         test: /\.(png|jpg|gif)$/,
@@ -37,19 +40,18 @@ module.exports = {
       {
         test: /\.less$/,
         use: [
+          {loader: 'cache-loader'},
+          {loader: 'style-loader'},
           {
-            loader: "style-loader"
-          },
-          {
-            loader: "css-loader",
+            loader: 'css-loader',
             options: {
               sourceMap: true,
               modules: true,
-              localIdentName: "[local]___[hash:base64:5]"
+              localIdentName: '[local]___[hash:base64:5]'
             }
           },
           {
-            loader: "less-loader"
+            loader: 'less-loader'
           }
         ]
       }

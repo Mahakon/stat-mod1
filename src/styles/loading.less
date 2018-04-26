@@ -1,5 +1,57 @@
-.loading-container {
-  .point {
+@import "./config/globals";
 
+.loading-container {
+  background: none;
+  .point {
+    height: 12px;
+    width: 12px;
+    background: @font-light-gray-color;
+    margin: 0 auto 0 auto;
+    border-radius: 20px;
+    position: relative;
+    animation-name: loading;
+    animation-duration: 3s;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+
+  }
+  .point::after {
+    content: "";
+    height: 12px;
+    width: 12px;
+    background: @font-light-gray-color;
+    z-index: 1;
+    position: absolute;
+    left: 120%;
+    border-radius: 20px;
+    animation-name: loading;
+    animation-duration: 2s;
+    animation-delay: 1s;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+  }
+  .point::before {
+    content: "";
+    height: 12px;
+    width: 12px;
+    background: @font-light-gray-color;
+    z-index: 1;
+    position: absolute;
+    right: 120%;
+    border-radius: 20px;
+    animation-name: loading;
+    animation-duration: 1s;
+    animation-delay: 2s;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+  }
+}
+
+@keyframes loading {
+  from {
+    background: @font-light-gray-color;
+  }
+  to {
+    background: @font-gray-color;
   }
 }
