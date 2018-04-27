@@ -10,18 +10,28 @@ import SubmitButton from '../base/submit-button/SubmitButton';
 export default class OutputList extends React.Component {
   static propTypes = {
     enablePurchase: PropTypes.bool.required,
-    currency: PropTypes.string.required
+    comission: PropTypes.object,
+    fullPrice: PropTypes.object.required
+  };
+
+  static defaultProps = {
+    comission: {
+      valus: '',
+      currnecy: ''
+    }
   };
 
   render () {
     return(
       <div styleName="output-container">
-        <SubmitButton enablePurchase={this.props.enablePurchase}/>
+        <SubmitButton enablePurchase={this.props.enablePurchase}
+                      fullPrice={this.props.fullPrice}/>
         <div styleName={cx(
           "comission",
           {"__invisible": !this.props.enablePurchase}
         )}>
-          Включая комиссию 45 {this.props.currency}
+          Включая комиссию {this.props.comission.value + ' ' +
+          this.props.comission.currency}
         </div>
       </div>
     )

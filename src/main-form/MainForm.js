@@ -3,15 +3,16 @@ import CSSModules from 'react-css-modules';
 import PropTypes from 'prop-types';
 
 import styles from './main-form.less';
-import SubmitButton from '../base/submit-button/SubmitButton.js';
-import InputListContainer from "../input-list/InputListContainer";
-import LabelList from "../label-list/LabelList";
-import OutputListContainer from "../output-list/OutputListContainer";
+import InputListContainer from '../input-list/InputListContainer';
+import LabelList from '../label-list/LabelList';
+import OutputList from '../output-list/OutputList';
 
 @CSSModules(styles)
 export default class MainForm extends React.Component {
   static propTypes = {
-    formState: PropTypes.object.required
+    formState: PropTypes.object.required,
+    handleOnValidData: PropTypes.func.required,
+    handleOnInValidData: PropTypes.func.required
   };
 
   render () {
@@ -22,11 +23,14 @@ export default class MainForm extends React.Component {
           <InputListContainer inputArray={this.props.formState.inputArray}
                               handleOnValidData=
                                 {this.props.handleOnValidData}
+                              handleOnInValidData=
+                                {this.props.handleOnInValidData}
                               lotAmount={this.props.formState.lotAmount}
                               lotPrice={this.props.formState.lotPrice}/>
-          <OutputListContainer currency={this.props.formState.currency}
-                               enablePurchase=
-                                 {this.props.formState.enablePurchase}/>
+          <OutputList comission={this.props.formState.comission}
+                      enablePurchase=
+                        {this.props.formState.enablePurchase}
+                      fullPrice={this.props.formState.fullPrice}/>
         </form>
       </div>
     )

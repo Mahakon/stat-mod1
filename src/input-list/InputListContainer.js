@@ -1,14 +1,11 @@
 import React from 'react';
 
-import InputList from "./InputList";
-import {LOTS_NAME, SUM_NAME} from "../consts/InputNames";
+import InputList from './InputList';
+import { LOTS_NAME, SUM_NAME } from '../consts/InputNames';
 
 export default class InputListContainer extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      inputArray: this.props.inputArray
-    };
 
     this.handleOnInputChange = this.handleOnInputChange.bind(this);
   }
@@ -19,7 +16,6 @@ export default class InputListContainer extends React.Component {
 
   handleOnInputChange(input) {
     let curSum = '', curNumLots = '';
-    console.log(input.value);
 
     if (input.value !== '' && this.isNumeric(input.value)) {
       switch (input.name) {
@@ -33,6 +29,10 @@ export default class InputListContainer extends React.Component {
             input.value;
         }break;
         case LOTS_NAME: {
+          if (!Number.isInteger(Number.parseFloat(input.value))) {
+            return this.props.handleOnInValidData();
+          }
+
           curNumLots = (input.value > this.props.lotAmount) ?
             this.props.lotAmount :
             input.value;
@@ -40,21 +40,19 @@ export default class InputListContainer extends React.Component {
         }break;
       }
 
+      if (curSum === 0 || curNumLots === 0) {
+        return this.props.handleOnInValidData();
+      }
+
       return this.props.handleOnValidData(curSum, curNumLots);
     }
-    this.setState((prevState) => {
-      let curState = {...prevState};
 
-      curState.inputArray[0].value = curSum;
-      curState.inputArray[1].value = curNumLots;
-      return curState;
-    })
-
+    return this.props.handleOnInValidData();
   }
 
   render () {
     return(
-      <InputList inputArray={this.state.inputArray}
+      <InputList inputArray={this.props.inputArray}
                  handleOnInputChange={this.handleOnInputChange}/>
     )
   };
