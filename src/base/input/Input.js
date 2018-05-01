@@ -9,34 +9,36 @@ import styles from './input.less';
 @CSSModules(styles, {allowMultiple: true})
 export default class Input extends React.Component {
   static propTypes = {
-    numOrder: PropTypes.number.required,
-    title: PropTypes.string.required,
-    curValue: PropTypes.string.required,
+    order: PropTypes.number.required,
+    inputData: {
+      title: PropTypes.string.required,
+      name: PropTypes.string.required,
+      value: PropTypes.string.required,
+    },
     handleOnChange: PropTypes.func.required,
-    name: PropTypes.string.required
   };
 
   render () {
+    const order = this.props.order;
+    const  { title, name, value } = this.props.inputData;
+
     return(
       <div styleName={cx(
                        "container",
-                       {"__left": !(this.props.numOrder & 1)},
-                       {"__right": (this.props.numOrder & 1)})}>
+                       {"__left": !(order & 1)},
+                       {"__right": (order & 1)})}>
 
         <div styleName="title">
-          {this.props.title}
+          {title}
         </div>
         <div styleName="input-view">
           <DebounceInput minLength={0}
                          debounceTimeout={500}
                          styleName="input"
-                         onChange={(event) => {
-                           event.preventDefault();
-                           return this.props.handleOnChange(event.target)
-                         }
-                         }
-                         name={this.props.name}
-                         value={this.props.curValue}/>
+                         name={name}
+                         value={value}
+                         onChange={(event) =>
+                           this.props.handleOnChange(event.target)}/>
         </div>
       </div>
     )

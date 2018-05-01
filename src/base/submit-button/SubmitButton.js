@@ -15,26 +15,29 @@ export default class SubmitButton extends React.Component {
   static defaultProps = {
     enablePurchase: false,
     fullPrice: {
-      valus: '',
-      currnecy: ''
+      value: '',
+      currency: ''
     }
   };
 
   render () {
+    const enablePurchase = this.props.enablePurchase;
+    const fullPrice = this.props.fullPrice;
+
     return(
       <div styleName="container">
         <button styleName="submit-button"
-                disabled={!this.props.enablePurchase}>
+                disabled={!enablePurchase}>
           <div styleName={cx(
             "loading-container",
-            {"__display": this.props.enablePurchase})}>
+            {"__display": enablePurchase})}>
             <div styleName="point"></div>
           </div>
           <div styleName={cx(
             "fullprice",
-            {"__display": !this.props.enablePurchase})}>
-            Продать на  {this.props.fullPrice.value + ' ' +
-            this.props.fullPrice.currency}
+            {"__display": !enablePurchase})}>
+            Продать на  { fullPrice.value + ' ' +
+            fullPrice.currency }
           </div>
         </button>
       </div>

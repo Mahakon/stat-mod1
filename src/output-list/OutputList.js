@@ -16,22 +16,22 @@ export default class OutputList extends React.Component {
 
   static defaultProps = {
     comission: {
-      valus: '',
+      value: '',
       currnecy: ''
     }
   };
 
   render () {
+    const { enablePurchase, fullPrice, comission } = this.props;
     return(
       <div styleName="output-container">
-        <SubmitButton enablePurchase={this.props.enablePurchase}
-                      fullPrice={this.props.fullPrice}/>
+        <SubmitButton enablePurchase={enablePurchase}
+                      fullPrice={fullPrice}/>
         <div styleName={cx(
           "comission",
-          {"__invisible": !this.props.enablePurchase}
-        )}>
-          Включая комиссию {this.props.comission.value + ' ' +
-          this.props.comission.currency}
+          {"__invisible": !enablePurchase})}>
+          Включая комиссию {comission.value + ' ' +
+          comission.currency}
         </div>
       </div>
     )

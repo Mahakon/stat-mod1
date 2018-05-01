@@ -8,25 +8,30 @@ import styles from './label.less';
 @CSSModules(styles, {allowMultiple: true})
 export default class DataLabel extends React.Component {
   static propTypes = {
-    title: PropTypes.string.required,
-    data: {
-      amount: PropTypes.number.required,
-      units: PropTypes.string.required
-    },
-    numOrder: PropTypes.number
+    order: PropTypes.number,
+    labelData: {
+      title: PropTypes.string.required,
+      content: {
+        amount: PropTypes.number.required,
+        units: PropTypes.string.required
+      }
+    }
   };
 
   render () {
+    const order = this.props.order;
+    const {title, content} = this.props.labelData;
+
     return(
       <div styleName={cx(
                        "container",
-                       {"__left": !(this.props.numOrder & 1)},
-                       {"__right": (this.props.numOrder & 1)})}>
+                       {"__left": !(order & 1)},
+                       {"__right": (order & 1)})}>
         <div styleName="title">
-          {this.props.title}
+          {title}
         </div>
         <div styleName="output-data">
-          {this.props.data.amount + ' ' + this.props.data.units}
+          {content.amount + ' ' + content.units}
         </div>
       </div>
     )
