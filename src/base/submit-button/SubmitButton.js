@@ -8,36 +8,22 @@ import styles from './submit-button.less';
 @CSSModules(styles, {allowMultiple: true})
 export default class SubmitButton extends React.Component {
   static propTypes = {
-    enablePurchase: PropTypes.bool,
-    fullPrice: PropTypes.object,
-  };
-
-  static defaultProps = {
-    enablePurchase: false,
-    fullPrice: {
-      value: '',
-      currency: ''
-    }
+    title: PropTypes.string.required,
+    handleClick: PropTypes.func.required,
+    invisible: PropTypes.func.required
   };
 
   render () {
-    const enablePurchase = this.props.enablePurchase;
-    const fullPrice = this.props.fullPrice;
+    const { title, invisible } = this.props;
 
     return(
-      <div styleName="container">
+      <div styleName={cx(
+        "container",
+        {"__display": invisible})}>
         <button styleName="submit-button"
-                disabled={!enablePurchase}>
-          <div styleName={cx(
-            "loading-container",
-            {"__display": enablePurchase})}>
-            <div styleName="point"></div>
-          </div>
-          <div styleName={cx(
-            "fullprice",
-            {"__display": !enablePurchase})}>
-            Продать на  { fullPrice.value + ' ' +
-            fullPrice.currency }
+                onClick={this.props.handleClick}>
+          <div styleName="title">
+            {title}
           </div>
         </button>
       </div>

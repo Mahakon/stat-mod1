@@ -1,0 +1,1 @@
+-I/home/maha/opencv-3.4.0/build_js -I/home/maha/opencv-3.4.0/modules/imgproc/include -I/home/maha/opencv-3.4.0/modules/imgproc/src -I/home/maha/opencv-3.4.0/build_js/modules/imgproc -I/home/maha/opencv-3.4.0/modules/core/include 

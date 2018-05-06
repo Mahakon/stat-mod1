@@ -1,0 +1,1 @@
+/home/maha/emsdk/emscripten/1.37.39/emar rc ../../lib/libopencv_objdetect.a  @CMakeFiles/opencv_objdetect.dir/objects1.rsp
