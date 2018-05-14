@@ -1,13 +1,13 @@
 import ReactDOM from 'react-dom';
 import React from 'react';
-import VideoInput from './video-input/VideoInput'
+import Graph from './graphs/Graph'
 
 import './styles/default.less';
 
 const init = () => {
   function render() {
     ReactDOM.render(
-      <VideoInput/>,
+      <Graph/>,
       document.querySelector('#main-wrapper')
     )
   }
